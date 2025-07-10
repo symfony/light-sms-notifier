@@ -86,7 +86,7 @@ final class LightSmsTransport extends AbstractTransport
 
     public function __toString(): string
     {
-        return sprintf('lightsms://%s?from=%s', $this->getEndpoint(), $this->from);
+        return \sprintf('lightsms://%s?from=%s', $this->getEndpoint(), $this->from);
     }
 
     public function supports(MessageInterface $message): bool
@@ -109,7 +109,7 @@ final class LightSmsTransport extends AbstractTransport
         ];
         $data['signature'] = $this->generateSignature($data);
 
-        $endpoint = sprintf('https://%s/external/get/send.php', $this->getEndpoint());
+        $endpoint = \sprintf('https://%s/external/get/send.php', $this->getEndpoint());
         $response = $this->client->request('GET', $endpoint, [
             'query' => $data,
         ]);
